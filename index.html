@@ -367,6 +367,13 @@ style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6A
 
 
 <div>
+<label class="block text-xs font-bold uppercase tracking-widest text-primary mb-2">Full Name</label>
+<input id="nama" oninput="updatePreview()"
+class="w-full bg-white border-primary/20 rounded-lg p-4 text-sm"
+placeholder="Enter your full name" type="text"/>
+</div>
+
+<div>
   <label class="block text-xs font-bold uppercase tracking-widest text-primary mb-2">
     Will you attend?
   </label>
@@ -448,18 +455,14 @@ function updatePreview() {
 function submitRSVP(e) {
   e.preventDefault();
 
-  const nama = document.getElementById("nama").value;
+  const guestName = params.get("guest");
   const guest = document.getElementById("guest").value;
   const diet = document.getElementById("diet").value;
   const status = document.querySelector('input[name="attendance"]:checked')?.value;
 
-  if (!nama) {
-    alert("Silakan isi nama terlebih dahulu.");
-    return;
-  }
 
   const message = {
-    nama,
+    guestName,
     status,
     guest,
     diet,
