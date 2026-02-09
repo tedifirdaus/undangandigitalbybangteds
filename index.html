@@ -455,14 +455,14 @@ function updatePreview() {
 function submitRSVP(e) {
   e.preventDefault();
 
-  const guestName = params.get("guest");
+  const nama = document.getElementById("nama").value;
   const guest = document.getElementById("guest").value;
   const diet = document.getElementById("diet").value;
   const status = document.querySelector('input[name="attendance"]:checked')?.value;
 
 
   const message = {
-    guestName,
+    nama,
     status,
     guest,
     diet,
