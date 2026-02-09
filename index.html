@@ -460,6 +460,10 @@ function submitRSVP(e) {
   const diet = document.getElementById("diet").value;
   const status = document.querySelector('input[name="attendance"]:checked')?.value;
 
+  if (!nama) {
+    alert("Silakan isi nama terlebih dahulu.");
+    return;
+  }
 
   const message = {
     nama,
