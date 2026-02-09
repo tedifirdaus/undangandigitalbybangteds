@@ -541,12 +541,17 @@ renderMessages();
   }
 </script>
 <script>
-const guestNameStatic = "Tedi Firdaus";
-
+// Ambil parameter nama dari URL
+function getGuestNameFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const guestName = params.get("nama"); // ambil dari ?nama=...
+  return guestName || "Tamu Undangan"; // default kalau tidak ada parameter
+}
 function showWelcome() {
   const popup = document.getElementById("welcomePopup");
-  document.getElementById("guestName").innerText = guestNameStatic;
-  document.getElementById("previewNama").innerText = guestNameStatic;
+  const guestName = getGuestNameFromURL(); // ambil nama dari URL
+  document.getElementById("guestName").innerText = guestName;
+  document.getElementById("previewNama").innerText = guestName;
   popup.classList.remove("hidden");
   popup.classList.add("flex");
 }
