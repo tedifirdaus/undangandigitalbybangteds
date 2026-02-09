@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Julian &amp; Sofia | Wedding Invitation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee2b5b",
+                        "background-light": "#fdfaf7", // Champagne/Ivory feel
+                        "background-dark": "#221015",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .floral-accent {
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        .bg-overlay {
+            background: linear-gradient(180deg, rgba(34, 16, 21, 0.4) 0%, rgba(34, 16, 21, 0.7) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+  .show-popup {
+    display: flex !important;
+  }
+
+  .show-popup #popupBox {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .show-welcome {
+  display: flex !important;
+  }
+  .show-welcome #welcomeBox {
+  transform: scale(1);
+  opacity: 1;
+}
+
+</style>
+<style>
+  .clip-path-flap {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.open #flap {
+  transform: rotateX(180deg);
+   z-index: 10;
+}
+
+.open #letter {
+  transform: translate-y(-20px) scale(1);
+  opacity: 1;
+}
+
+.open #openHint {
+  opacity: 0;
+}
+.open #frontBtn {
+  opacity: 0;
+  pointer-events: auto;
+  transform: scale(0.8);
+}
+#envelope {
+  position: relative;
+  z-index: 1;
+}
+
+</style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#3d2c2e] dark:text-[#f3e7ea] selection:bg-primary/30">
+<!-- Sticky Music Player -->
+<div class="fixed bottom-6 right-6 z-50">
+<button class="bg-white/90 dark:bg-primary/90 backdrop-blur-md p-4 rounded-full shadow-2xl flex items-center justify-center text-primary dark:text-white border border-primary/20">
+<span class="material-symbols-outlined text-2xl" onclick="toggleMusic()" id="btn" style="align-items: center;">▶</span>
+</button>
+<div id="welcomePopup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 px-4">
+  
+  <!-- ENVELOPE -->
+  <div id="envelope"
+     class="relative w-full max-w-sm aspect-[4/3] transition-all duration-700">
+     <!-- FRONT BUTTON -->
+<button id="frontBtn"
+  onclick="openEnvelope()"
+  class="absolute inset-x-0 bottom-6 mx-auto w-48 py-3 
+         bg-primary text-white font-semibold rounded-full shadow-xl
+         hover:scale-105 transition z-[999]">
+  Buka Undangan
+</button>
+
+    <!-- HINT -->
+  <div id=""
+      class="absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center
+              text-primary text-xs animate-bounce pointer-events-none">
+        <!-- FRONT BUTTON -->
+
+    <span class="material-symbols-outlined text-lg">touch_app</span>
+    <span>Tap to Open</span>
+    
+</div>
+
+    <!-- BACK -->
+    <div class="absolute inset-0 bg-[#fdfaf7] rounded-xl shadow-2xl"></div>
+
+    <!-- LETTER -->
+    <div id="letter"
+         class="absolute inset-2 bg-white rounded-lg shadow-xl flex flex-col justify-center items-center text-center
+                p-6 transform translate-y-2 scale-90 opacity-0 transition-all duration-100000">
+      <h2 class="text-xl font-bold text-primary mb-2">Selamat Datang 💐</h2>
+      <p id="guestName" class="text-lg font-semibold mb-3"></p>
+      <p class="text-sm opacity-70 mb-6">
+        Terima kasih sudah membuka undangan kami
+      </p>
+      
+    </div>
+
+    <!-- FLAP -->
+    <div id="flap"
+         class="absolute top-0 left-0 w-full h-1/2 origin-top
+                bg-primary rounded-t-xl
+                clip-path-flap transition-all duration-100">
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex flex-col justify-end overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="h-full w-full bg-cover bg-center" data-alt="Romantic high-quality photo of a couple in a wedding setting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC603tUJP6yWM88HBtWt6622VvENJVK3mfyo_R0S_N7Th6zhRXmzuRG9PLIrPnsKNy90sG1rurkIJuGHF5JRE3bOoJn4irSDTqV_IxbK2q4HsI86ebe2niWztEydMUI66ZBBovZWMsvdb9Hz2v-P3HEacqLtjH06z973G6LQhmD6XLix70KUGiPY5NaugPBf-tG0Z0hkHTytLH1yjoxbjfl4Dq6PJ2GqNwpRroe8KJ-UCkkGoWciGE3isxwo-6-zYRetFwmrLj-jU4');"></div>
+<div class="absolute inset-0 bg-overlay"></div>
+</div>
+<div class="relative z-10 p-8 pb-16 text-center text-white space-y-4">
+<p class="uppercase tracking-[0.4em] text-xs font-medium opacity-90">The Wedding of</p>
+<h1 class="text-5xl font-bold tracking-tight">Julian <span class="text-primary">&amp;</span> Sofia</h1>
+<div class="h-px w-12 bg-primary mx-auto my-4"></div>
+<p class="text-lg font-light">12.05.2024 • Lake Como, Italy</p>
+<div class="pt-12 animate-bounce">
+<span class="material-symbols-outlined text-3xl opacity-60">expand_more</span>
+</div>
+</div>
+</section>
+<!-- Top Navigation Bar (Appears on scroll typically, static here) -->
+<nav class="sticky top-0 z-40 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4 border-b border-primary/5 flex justify-between items-center">
+<span class="material-symbols-outlined text-primary">favorite</span>
+<p class="font-bold tracking-widest uppercase text-[10px] text-primary">Save The Date</p>
+<span class="material-symbols-outlined text-primary">menu</span>
+</nav>
+<!-- Countdown Timer Section -->
+<section class="py-12 px-6">
+  <div class="grid grid-cols-4 gap-2">
+    <div class="flex flex-col items-center bg-white dark:bg-background-dark p-4 rounded-lg shadow-sm border border-primary/10">
+      <span id="days" class="text-2xl font-bold text-primary">00</span>
+      <span class="text-[10px] uppercase tracking-wider opacity-60">Days</span>
+    </div>
+    <div class="flex flex-col items-center bg-white dark:bg-background-dark p-4 rounded-lg shadow-sm border border-primary/10">
+      <span id="hours" class="text-2xl font-bold text-primary">00</span>
+      <span class="text-[10px] uppercase tracking-wider opacity-60">Hrs</span>
+    </div>
+    <div class="flex flex-col items-center bg-white dark:bg-background-dark p-4 rounded-lg shadow-sm border border-primary/10">
+      <span id="minutes" class="text-2xl font-bold text-primary">00</span>
+      <span class="text-[10px] uppercase tracking-wider opacity-60">Min</span>
+    </div>
+    <div class="flex flex-col items-center bg-white dark:bg-background-dark p-4 rounded-lg shadow-sm border border-primary/10">
+      <span id="seconds" class="text-2xl font-bold text-primary">00</span>
+      <span class="text-[10px] uppercase tracking-wider opacity-60">Sec</span>
+    </div>
+  </div>
+</section>
+<div id="popup" class="fixed inset-0 hidden items-center justify-center bg-black/60 z-50">
+  <div class="bg-white dark:bg-background-dark rounded-2xl p-8 text-center shadow-xl scale-75 opacity-0 transition-all duration-500"
+       id="popupBox">
+    <h2 class="text-2xl font-bold text-primary mb-2">Waktu Habis ⏰</h2>
+    <p class="text-sm opacity-70 mb-4">Tenggat waktu telah berakhir.</p>
+    <button onclick="closePopup()" class="mt-2 px-4 py-2 bg-primary text-white rounded-lg hover:scale-105 transition">
+      Tutup
+    </button>
+  </div>
+</div>
+
+<script>
+  const deadline = new Date("2026-02-10T09:22:00").getTime();
+  let popupShown = false;
+  const deadlineDate = new Date(deadline);
+  const options = { day: "2-digit", month: "long", year: "numeric" };
+  const formattedDate = deadlineDate.toLocaleDateString("en-US", options);
+
+
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = deadline - now;
+
+    if (distance <= 0) {
+      clearInterval(timer);
+
+      document.getElementById("days").textContent = "00";
+      document.getElementById("hours").textContent = "00";
+      document.getElementById("minutes").textContent = "00";
+      document.getElementById("seconds").textContent = "00";
+
+      if (!popupShown) {
+        popupShown = true;
+        showPopup();
+      }
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").textContent = String(days).padStart(2, "0");
+    document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+  }, 1000);
+
+  function showPopup() {
+    const popup = document.getElementById("popup");
+    const box = document.getElementById("popupBox");
+    popup.classList.remove("hidden");
+    popup.classList.add("show-popup");
+    setTimeout(() => box.classList.add("show-popup"), 10);
+  }
+
+  function closePopup() {
+    const popup = document.getElementById("popup");
+    popup.classList.remove("show-popup");
+    popup.classList.add("hidden");
+  }
+</script>
+
+
+<!-- Our Story Section -->
+<section class="relative py-16 px-8 text-center overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 floral-accent bg-no-repeat bg-contain" data-alt="Soft watercolor floral illustration in pink tones" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDe4aqvW3sUSrEzUF9vLKDOCUPqhHOMhlDHYQvwbuPQVrucGgcSoz16k_NSEDUKuvzqDcwjSy9zw6f4fpbifFNWNTAzoMAgy88iL-8nlv2FSDh_GLgcxgUi-PBmAuXNlueLOSeXGhb5npHA7jDq7Mn9d_G1uSUPYxUOaSgTOBhFZ1hmymflHKb3l-merym1lHBjJVSd0rNA5tw1_pRgXaQW8HS-6ePbR3KMz6jXn6oPtsoklukSEYuQNwiT4iwQxUnNlYyLZLJtpWo');"></div>
+<h2 class="text-3xl font-bold mb-6 italic">Our Love Story</h2>
+<p class="leading-relaxed text-[#6b585a] dark:text-[#a58d92] font-light">
+            It started with a simple hello in a crowded bookstore. Five years, three cities, and a thousand coffee dates later, we're ready to start our forever. We can't wait to share this beautiful new chapter with our favorite people.
+        </p>
+<div class="mt-8 relative aspect-square rounded-xl overflow-hidden shadow-xl">
+<div class="h-full w-full bg-cover bg-center" data-alt="Couple laughing together in a park during sunset" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD0eDIzipJHGx3zZEyWNiAHUrN9_4zw38N1G23W6QDbZjh31f53IgVdePvxVohs-ziM7N55VWVe0Nam6k5jPYx6lcAzzwrHohm3brx-65H8vcN90Rge_L7mQzhDfUcCz-4CfQJaBWPD-x2G2wZnk8M7o-aXZ3SoX8Z5-d845p0TrndmrRmqSF3271w0XgUuoTyCqQBtmQAb05DXylIaGUhMyS8ZChnUlKRDMIq2OQJ62rcR3uCkzmp3us9c3szBfJevSOpn3pf7XZA');"></div>
+</div>
+</section>
+<!-- Event Details -->
+<section class="py-16 px-6 bg-primary/5 space-y-8">
+<h2 class="text-2xl font-bold text-center mb-8 uppercase tracking-widest text-primary">The Details</h2>
+<!-- Ceremony -->
+<div class="bg-white dark:bg-background-dark p-8 rounded-xl shadow-lg border-t-4 border-primary">
+<span class="material-symbols-outlined text-4xl text-primary mb-4">church</span>
+<h3 class="text-xl font-bold mb-2">The Ceremony</h3>
+<p class="text-sm opacity-70 mb-4">Starts at 4:30 PM</p>
+<p class="font-medium mb-6">Villa del Balbianello,<br/>Lake Como, Italy</p>
+<button class="w-full py-3 border border-primary text-primary rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">map</span>
+                View on Map
+            </button>
+</div>
+<!-- Reception -->
+<div class="bg-white dark:bg-background-dark p-8 rounded-xl shadow-lg border-t-4 border-primary">
+<span class="material-symbols-outlined text-4xl text-primary mb-4">restaurant</span>
+<h3 class="text-xl font-bold mb-2">The Reception</h3>
+<p class="text-sm opacity-70 mb-4">Starts at 7:00 PM</p>
+<p class="font-medium mb-6">Grand Hotel Tremezzo Terrace,<br/>Lake Como, Italy</p>
+<button class="w-full py-3 border border-primary text-primary rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">map</span>
+                View on Map
+            </button>
+</div>
+</section>
+<!-- RSVP Section -->
+<section class="py-20 px-8 relative">
+<section class="py-20 px-8 bg-primary/5">
+  <div class="max-w-md mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-2">Wedding Gift</h2>
+    <p class="text-sm opacity-60 mb-10">
+      Doa restu Anda sudah cukup, namun jika ingin berbagi kebahagiaan:
+    </p>
+
+    <!-- Card -->
+    <div class="bg-white dark:bg-background-dark rounded-2xl shadow-xl p-6 space-y-6">
+
+      <!-- Groom -->
+      <div class="flex items-center justify-between border-b pb-4">
+        <div>
+          <p class="text-sm opacity-60">Julian</p>
+          <p class="font-bold text-lg">BCA</p>
+          <p id="rekJulian" class="text-primary font-mono tracking-wider">
+            1234567890
+          </p>
+        </div>
+        <button onclick="copyRek('rekJulian')" 
+          class="px-3 py-2 text-xs bg-primary text-white rounded-lg hover:scale-105 transition">
+          Salin
+        </button>
+      </div>
+
+      <!-- Bride -->
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm opacity-60">Sofia</p>
+          <p class="font-bold text-lg">Mandiri</p>
+          <p id="rekSofia" class="text-primary font-mono tracking-wider">
+            0987654321
+          </p>
+        </div>
+        <button onclick="copyRek('rekSofia')" 
+          class="px-3 py-2 text-xs bg-primary text-white rounded-lg hover:scale-105 transition">
+          Salin
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- PREVIEW -->
+<div class="max-w-md mx-auto mb-10 p-6 border border-primary/20 rounded-xl text-center mt-10">
+  <p class="text-sm opacity-60 mb-2">Live Preview</p>
+  <h3 id="previewNama" class="text-xl font-bold">Nama Tamu</h3>
+  <p id="previewStatus" class="mt-2 text-sm">Status kehadiran</p>
+  <p id="previewGuest" class="mt-1 text-sm"></p>
+  <p id="previewDiet" class="mt-1 text-xs opacity-70"></p>
+</div>
+
+<div class="absolute bottom-0 left-0 w-40 h-40 floral-accent bg-no-repeat bg-contain transform -rotate-90"
+style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPHtwRzIVpBwZ2SrHXOEZA4Ktiimkz81gspf5mIsJlw1OIpmPz4wudt-a-_T8bKePpAgsKKtSNpmRkFI_aY5y-_UAv4AIBLDVftjdnnL2ql013VakXKcyTz47bLEW7SKaPtIix4TRPCqbx0FK7wUGysWePDIiNRqrKrwyEsdhBvKHGLUovWV0oOZSKT5Uy-t0sAyZuDb5DrcyfoEh3vtxxUw95EvK8ZHgF-Lrf6pbFJinjwBkoEnCpPKvwjxol3Do3DeBeMhqWBBk');"></div>
+
+<div class="max-w-md mx-auto">
+
+<div class="text-center mb-10">
+<h2 class="text-3xl font-bold mb-2">Kindly Respond</h2>
+<p id="rsvpDeadlineText" class="text-sm opacity-60">Please RSVP by April 12th, 2024</p>
+</div>
+
+<form class="space-y-6" onsubmit="submitRSVP(event)">
+
+
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-primary mb-2">Full Name</label>
+<input id="nama" oninput="updatePreview()"
+class="w-full bg-white border-primary/20 rounded-lg p-4 text-sm"
+placeholder="Enter your full name" type="text"/>
+</div>
+
+<div>
+  <label class="block text-xs font-bold uppercase tracking-widest text-primary mb-2">
+    Will you attend?
+  </label>
+
+  <div class="grid grid-cols-2 gap-4">
+
+    <label for="attendYes"
+      class="flex items-center justify-center p-4 border border-primary/20 rounded-lg cursor-pointer
+             hover:border-primary transition has-[:checked]:bg-primary has-[:checked]:text-white">
+
+      <input id="attendYes" type="radio" name="attendance"
+        value="Joyfully Accepts" class="hidden" onchange="updatePreview()" checked>
+      <span class="text-sm font-medium">Joyfully Accepts</span>
+    </label>
+
+    <label for="attendNo"
+      class="flex items-center justify-center p-4 border border-primary/20 rounded-lg cursor-pointer
+             hover:border-primary transition has-[:checked]:bg-primary has-[:checked]:text-white">
+
+      <input id="attendNo" type="radio" name="attendance"
+        value="Regretfully Declines" class="hidden" onchange="updatePreview()">
+      <span class="text-sm font-medium">Regretfully Declines</span>
+    </label>
+
+  </div>
+</div>
+
+
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-primary mb-2">Guest Count</label>
+<select id="guest" onchange="updatePreview()"
+class="w-full bg-white border-primary/20 rounded-lg p-4 text-sm">
+<option>1 Orang</option>
+<option>2 Orang</option>
+<option>3 Orang</option>
+</select>
+</div>
+
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-primary mb-2">Dietary Notes</label>
+<textarea id="diet" oninput="updatePreview()"
+class="w-full bg-white border-primary/20 rounded-lg p-4 text-sm h-24"
+placeholder="Allergies, vegetarian, etc..."></textarea>
+</div>
+
+<button class="w-full bg-primary text-white py-4 rounded-lg font-bold uppercase tracking-widest text-sm" type="submit">
+Send RSVP
+</button>
+
+</form>
+<!-- Guest Messages -->
+<div class="mt-14">
+  <h3 class="text-xl font-bold text-center mb-6 text-primary">💌 Pesan dari Tamu</h3>
+  <button onclick="resetWithCode()"
+  class="mx-auto block mb-4 text-xs text-red-500 underline hover:text-red-700">
+  Admin Reset
+</button>
+
+
+  <div id="guestMessages" class="space-y-4"></div>
+</div>
+</div>
+</section>
+
+<script>
+function updatePreview() {
+  const nama = document.getElementById("nama").value;
+  const guest = document.getElementById("guest").value;
+  const diet = document.getElementById("diet").value;
+  const status = document.querySelector('input[name="attendance"]:checked')?.value;
+
+  document.getElementById("previewNama").innerText = nama || "Nama Tamu";
+  document.getElementById("previewStatus").innerText = status || "Status kehadiran";
+  document.getElementById("previewGuest").innerText = guest || "";
+  document.getElementById("previewDiet").innerText = diet || "";
+}
+</script>
+<script>
+function submitRSVP(e) {
+  e.preventDefault();
+
+  const nama = document.getElementById("nama").value;
+  const guest = document.getElementById("guest").value;
+  const diet = document.getElementById("diet").value;
+  const status = document.querySelector('input[name="attendance"]:checked')?.value;
+
+  if (!nama) {
+    alert("Silakan isi nama terlebih dahulu.");
+    return;
+  }
+
+  const message = {
+    nama,
+    status,
+    guest,
+    diet,
+    time: new Date().toLocaleString()
+  };
+
+  let data = JSON.parse(localStorage.getItem("guestMessages")) || [];
+  data.unshift(message);
+  localStorage.setItem("guestMessages", JSON.stringify(data));
+
+  renderMessages();
+
+  // reset form
+  e.target.reset();
+  updatePreview();
+}
+
+function renderMessages() {
+  const container = document.getElementById("guestMessages");
+  const data = JSON.parse(localStorage.getItem("guestMessages")) || [];
+
+  container.innerHTML = "";
+
+  data.forEach(msg => {
+    const div = document.createElement("div");
+    div.className = "bg-white dark:bg-background-dark p-4 rounded-lg shadow border border-primary/10";
+
+    div.innerHTML = `
+      <p class="font-bold text-primary">${msg.nama}</p>
+      <p class="text-xs opacity-60 mb-1">${msg.time}</p>
+      <p class="text-sm mb-1">${msg.status} • ${msg.guest}</p>
+      ${msg.diet ? `<p class="text-xs opacity-70">"${msg.diet}"</p>` : ""}
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+// tampilkan pesan saat halaman dibuka
+renderMessages();
+</script>
+
+<!-- Footer -->
+<footer class="py-12 bg-background-dark text-white text-center px-8">
+<div class="mb-8">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">favorite</span>
+<h4 class="text-xl font-bold italic mb-2">Thank you for being part of our story</h4>
+<p class="text-sm opacity-50">#JulianAndSofia2024</p>
+</div>
+<div class="h-px w-20 bg-primary/30 mx-auto mb-8"></div>
+<p class="text-[10px] uppercase tracking-[0.2em] opacity-30">Handcrafted for Julian &amp; Sofia</p>
+</footer>
+
+
+
+<audio id="bgMusic">
+  <source src="THREESIXTY - NADAKU TERHENTI (Official Video).mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function toggleMusic() {
+    const music = document.getElementById("bgMusic");
+    const btn = document.getElementById("btn");
+
+    if (music.paused) {
+      music.play();
+      btn.innerText = "⏸";
+    } else {
+      music.pause();
+      btn.innerText = "▶";
+    }
+  }
+</script>
+<script>
+const guestNameStatic = "Tedi Firdaus";
+
+function showWelcome() {
+  const popup = document.getElementById("welcomePopup");
+  document.getElementById("guestName").innerText = guestNameStatic;
+  document.getElementById("previewNama").innerText = guestNameStatic;
+  popup.classList.remove("hidden");
+  popup.classList.add("flex");
+}
+
+function openEnvelope() {
+  const env = document.getElementById("envelope");
+  const popup = document.getElementById("welcomePopup");
+  const music = document.getElementById("bgMusic");
+  const btn = document.getElementById("btn");
+
+  env.classList.add("open");
+
+  music.play();
+  btn.innerText = "⏸";
+
+  setTimeout(() => {
+    popup.classList.add("hidden");
+  }, 2000); // lebih dramatis
+}
+
+
+window.addEventListener("load", showWelcome);
+</script>
+<script>
+function copyRek(id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Nomor rekening berhasil disalin 💕");
+  });
+}
+</script>
+
+<script>
+function resetMessages() {
+  if (confirm("Yakin ingin menghapus semua pesan tamu?")) {
+    localStorage.removeItem("guestMessages");
+    renderMessages();
+  }
+}
+</script>
+<script>
+const ADMIN_CODE = "reset bang ted"; // ganti sesuai keinginanmu
+
+function resetWithCode() {
+  const input = prompt("Masukkan kode admin:");
+  if (input === ADMIN_CODE) {
+    localStorage.removeItem("guestMessages");
+    renderMessages();
+    alert("Semua pesan berhasil dihapus.");
+  } else {
+    alert("Kode salah.");
+  }
+}
+</script>
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const deadlineDate = new Date(deadline);
+
+  const options = { day: "2-digit", month: "long", year: "numeric" };
+  const formattedDate = deadlineDate.toLocaleDateString("en-US", options);
+
+  const rsvpText = document.getElementById("rsvpDeadlineText");
+  if (rsvpText) {
+    rsvpText.innerText = "Please RSVP by " + formattedDate;
+  }
+});
+</script>
+<script>
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
+
+  window.onload = function () {
+    window.scrollTo(0, 0);
+  };
+</script>
+
+</body></html>
